@@ -280,23 +280,54 @@
                     <p class="socials__subtitle">@ten56hq</p>
                 </div>
                 
+                <!-- Instagram Official Embeds - Solution 3 -->
                 <div class="instagram-feed">
-                    <div class="instagram-feed__carousel" id="instagram-carousel">
-                        <!-- Instagram posts will be loaded here via JavaScript -->
-                        <div class="instagram-post">
-                            <img src="https://picsum.photos/300/300?random=1" alt="TEN56. Instagram Post" class="instagram-post__image">
-                            <div class="instagram-post__overlay">
-                                <a href="https://instagram.com/ten56hq" target="_blank" rel="noopener" class="instagram-post__link">
-                                    <span class="instagram-post__icon">📷</span>
+                    <div class="instagram-embeds">
+                        <!-- Replace REPLACE_WITH_ACTUAL_POST_ID with real TEN56. Instagram post IDs -->
+                        <!-- Example: if Instagram URL is https://www.instagram.com/p/ABC123xyz/ then use ABC123xyz -->
+                        
+                        <blockquote class="instagram-media" 
+                                    data-instgrm-captioned 
+                                    data-instgrm-permalink="https://www.instagram.com/p/REPLACE_WITH_ACTUAL_POST_ID_1/" 
+                                    data-instgrm-version="14" 
+                                    style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px auto; max-width:540px; min-width:326px; padding:0; width:99.375%;">
+                            <div style="padding:16px;">
+                                <a href="https://www.instagram.com/p/REPLACE_WITH_ACTUAL_POST_ID_1/" 
+                                   style="color:#000; text-decoration:none;" 
+                                   target="_blank">
+                                    View this post on Instagram
                                 </a>
                             </div>
-                        </div>
-                        <!-- More posts will be dynamically added -->
+                        </blockquote>
+                        
+                        <blockquote class="instagram-media" 
+                                    data-instgrm-captioned 
+                                    data-instgrm-permalink="https://www.instagram.com/p/REPLACE_WITH_ACTUAL_POST_ID_2/" 
+                                    data-instgrm-version="14" 
+                                    style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px auto; max-width:540px; min-width:326px; padding:0; width:99.375%;">
+                            <div style="padding:16px;">
+                                <a href="https://www.instagram.com/p/REPLACE_WITH_ACTUAL_POST_ID_2/" 
+                                   style="color:#000; text-decoration:none;" 
+                                   target="_blank">
+                                    View this post on Instagram
+                                </a>
+                            </div>
+                        </blockquote>
+                        
+                        <!-- Add more posts by copying the blockquote structure above -->
                     </div>
                     
-                    <div class="instagram-feed__controls">
-                        <button class="carousel-btn carousel-btn--prev" id="carousel-prev">‹</button>
-                        <button class="carousel-btn carousel-btn--next" id="carousel-next">›</button>
+                    <!-- Instagram Embed Script -->
+                    <script async src="//www.instagram.com/embed.js"></script>
+                    
+                    <!-- Fallback link -->
+                    <div class="instagram-fallback" style="text-align: center; margin-top: var(--spacing-lg);">
+                        <a href="https://instagram.com/ten56hq" 
+                           target="_blank" 
+                           rel="noopener"
+                           class="cta-button cta-button--dark">
+                            More on @ten56hq
+                        </a>
                     </div>
                 </div>
                 
