@@ -307,7 +307,8 @@ button {
   width: 100%;
   height: 100%;
   border: none;
-  background: var(--color-cream);
+  background: var(--color-white);
+  border-radius: 8px;
 }
 
 /* ==========================================================================
