@@ -334,7 +334,7 @@ button {
 .merchandise {
   padding: var(--spacing-3xl) 0;
   background: var(--color-cream);
-  background-image: url('../images/merchandise/texture-overlay.png');
+  background-image: url('../images/f969e9634486cf99489bd13c04036122.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -412,7 +412,7 @@ button {
 .apparel {
   padding: var(--spacing-3xl) 0;
   background: var(--color-cream);
-  background-image: url('../images/hero/pattern-overlay.png');
+  background-image: url('../images/176d0799e05794db8a481cf827fca415.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -658,9 +658,9 @@ button {
 .socials {
   padding: var(--spacing-3xl) 0;
   background: var(--color-dark-red);
-  background-image: url('../images/hero/accent-graphic.png');
-  background-size: contain;
-  background-position: right center;
+  background-image: url('../images/Main promo IO.jpeg');
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   position: relative;
 }
