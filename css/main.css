@@ -742,10 +742,10 @@ button {
 }
 
 .collaboration__content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-3xl);
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
+  padding-right: var(--spacing-3xl);
 }
 
 .collaboration__img {
