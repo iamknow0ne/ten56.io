@@ -199,6 +199,10 @@ button {
   display: flex;
   align-items: center;
   background: var(--color-dark-red);
+  background-image: url('../images/hero/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 
@@ -283,6 +287,27 @@ button {
   aspect-ratio: 16/9;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* Linktree Embed Styles */
+.linktree-embed {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.linktree-embed__iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: var(--color-cream);
 }
 
 /* ==========================================================================
@@ -514,8 +539,28 @@ button {
   position: relative;
   padding: var(--spacing-3xl) 0;
   background: var(--color-gray);
+  background-image: url('../images/hero/tours-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: var(--color-white);
   overflow: hidden;
+}
+
+.tours::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(44, 12, 10, 0.8); /* Dark overlay for readability */
+  z-index: 1;
+}
+
+.tours > * {
+  position: relative;
+  z-index: 2;
 }
 
 .tours__background {
