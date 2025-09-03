@@ -6,7 +6,87 @@
     <title>TEN56. // IO OUT NOW</title>
     <meta name="description" content="TEN56. Official website - IO OUT NOW. Heavy music, merchandise, tours and more.">
     
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-495449167"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-495449167', {
+            // Enhanced measurement
+            enhanced_measurements: true,
+            // Custom parameters for band analytics
+            custom_map: {
+                'custom_parameter_1': 'fan_engagement_level',
+                'custom_parameter_2': 'content_type',
+                'custom_parameter_3': 'merchandise_interest'
+            }
+        });
+
+        // Band-specific tracking functions
+        window.TEN56Analytics = {
+            // Track merchandise clicks
+            trackMerchandise: function(itemName, category, value) {
+                gtag('event', 'merchandise_click', {
+                    'event_category': 'Commerce',
+                    'event_label': itemName,
+                    'custom_parameter_2': category,
+                    'custom_parameter_3': 'high_interest',
+                    'value': value || 0
+                });
+            },
+            
+            // Track music engagement
+            trackMusicEngagement: function(action, song, duration) {
+                gtag('event', 'music_engagement', {
+                    'event_category': 'Music',
+                    'event_label': song,
+                    'custom_parameter_1': this.calculateEngagementLevel(duration),
+                    'custom_parameter_2': 'music',
+                    'engagement_time_msec': duration * 1000
+                });
+            },
+            
+            // Track social media clicks
+            trackSocialClick: function(platform, post_id) {
+                gtag('event', 'social_click', {
+                    'event_category': 'Social',
+                    'event_label': platform,
+                    'custom_parameter_2': 'social_content'
+                });
+            },
+            
+            // Track tour interest
+            trackTourInterest: function(city, action) {
+                gtag('event', 'tour_interest', {
+                    'event_category': 'Tours',
+                    'event_label': city,
+                    'custom_parameter_1': 'potential_fan',
+                    'custom_parameter_2': 'tour_content'
+                });
+            },
+            
+            // Calculate engagement level
+            calculateEngagementLevel: function(duration) {
+                if (duration > 120) return 'high_engagement';
+                if (duration > 60) return 'medium_engagement';
+                return 'low_engagement';
+            },
+            
+            // Track geographic fan data
+            trackFanLocation: function(action) {
+                gtag('event', 'fan_location', {
+                    'event_category': 'Geography',
+                    'event_label': action,
+                    'custom_parameter_1': 'geographic_data'
+                });
+            }
+        };
+    </script>
+
     <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://www.youtube.com">
@@ -129,7 +209,7 @@
                                     <img src="images/merchandise/eu-store.jpg" alt="EU Store" class="store-card__img">
                                 </div>
                                 <h3 class="store-card__title">EU STORE</h3>
-                                <a href="https://www.outoflineshop.de/ten56/" target="_blank" rel="noopener" class="store-card__link">Shop Now</a>
+                                <a href="https://www.outoflineshop.de/ten56/" target="_blank" rel="noopener" class="store-card__link" onclick="TEN56Analytics.trackMerchandise('EU Store Click', 'store_redirect', 0); TEN56Analytics.trackFanLocation('eu_store_interest');">Shop Now</a>
                             </div>
                             
                             <div class="store-card">
@@ -137,7 +217,7 @@
                                     <img src="images/merchandise/us-store.jpg" alt="US Store" class="store-card__img">
                                 </div>
                                 <h3 class="store-card__title">US STORE</h3>
-                                <a href="https://www.visionmerch.com/outoflinemusic/ten56/" target="_blank" rel="noopener" class="store-card__link">Shop Now</a>
+                                <a href="https://www.visionmerch.com/outoflinemusic/ten56/" target="_blank" rel="noopener" class="store-card__link" onclick="TEN56Analytics.trackMerchandise('US Store Click', 'store_redirect', 0); TEN56Analytics.trackFanLocation('us_store_interest');">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -217,7 +297,7 @@
                             <h3 class="product-card__name">sportbra</h3>
                             <p class="product-card__price">€24,90 EUR</p>
                         </div>
-                        <a href="https://ten56apparel.com/products/peace-black-hoodie" target="_blank" rel="noopener" class="product-card__link">View Product</a>
+                        <a href="https://ten56apparel.com/products/sportbra" target="_blank" rel="noopener" class="product-card__link">View Product</a>
                     </div>
                 </div>
 
@@ -281,7 +361,7 @@
                 </div>
                 
                 <!-- Instagram Official Embeds - Solution 3 -->
-                <div class="instagram-feed">
+                <div class="instagram-feed" id="instagram-carousel">
                     <div class="instagram-embeds">
                         <!-- Replace REPLACE_WITH_ACTUAL_POST_ID with real TEN56. Instagram post IDs -->
                         <!-- Example: if Instagram URL is https://www.instagram.com/p/ABC123xyz/ then use ABC123xyz -->
@@ -294,7 +374,8 @@
                             <div style="padding:16px;">
                                 <a href="https://www.instagram.com/p/DMGIyytN-zs/" 
                                    style="color:#000; text-decoration:none;" 
-                                   target="_blank">
+                                   target="_blank"
+                                   onclick="TEN56Analytics.trackSocialClick('instagram', 'DMGIyytN-zs');">
                                     View this post on Instagram
                                 </a>
                             </div>
@@ -308,7 +389,8 @@
                             <div style="padding:16px;">
                                 <a href="https://www.instagram.com/p/DJJ6Wt_xnaU/" 
                                    style="color:#000; text-decoration:none;" 
-                                   target="_blank">
+                                   target="_blank"
+                                   onclick="TEN56Analytics.trackSocialClick('instagram', 'DJJ6Wt_xnaU');">
                                     View this post on Instagram
                                 </a>
                             </div>
@@ -322,7 +404,8 @@
                             <div style="padding:16px;">
                                 <a href="https://www.instagram.com/reel/DOG47yWCqTb/" 
                                    style="color:#000; text-decoration:none;" 
-                                   target="_blank">
+                                   target="_blank"
+                                   onclick="TEN56Analytics.trackSocialClick('instagram', 'DOG47yWCqTb');">
                                     View this reel on Instagram
                                 </a>
                             </div>
@@ -336,7 +419,8 @@
                             <div style="padding:16px;">
                                 <a href="https://www.instagram.com/reel/DOB04QHitaS/" 
                                    style="color:#000; text-decoration:none;" 
-                                   target="_blank">
+                                   target="_blank"
+                                   onclick="TEN56Analytics.trackSocialClick('instagram', 'DOB04QHitaS');">
                                     View this reel on Instagram
                                 </a>
                             </div>
@@ -350,7 +434,8 @@
                             <div style="padding:16px;">
                                 <a href="https://www.instagram.com/reel/DN-0cvNivk3/" 
                                    style="color:#000; text-decoration:none;" 
-                                   target="_blank">
+                                   target="_blank"
+                                   onclick="TEN56Analytics.trackSocialClick('instagram', 'DN-0cvNivk3');">
                                     View this reel on Instagram
                                 </a>
                             </div>
@@ -382,19 +467,26 @@
         </section>
 
         <!-- Collaboration Section -->
-        <section class="collaboration" style="background-image: url('images/a170658feda763152f2066c123f1a0b9.png'); background-size: contain; background-position: center; background-repeat: no-repeat; position: relative;">
+        <section class="collaboration" style="background-image: url('images/4cebdb7d1eab955c06cfb2b0862854cf.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
             <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(44, 12, 10, 0.7); z-index: 1;"></div>
             <div class="collaboration__container" style="position: relative; z-index: 2;">
-                <div class="collaboration__content">
-                    <div class="collaboration__info">
-                        <div class="collaboration__product">
-                            <img src="images/merchandise/collaboration-product.png" alt="Collaboration Product" class="collaboration__product-img">
-                        </div>
-                        <div class="collaboration__cta">
-                            <a href="https://moersleutel.com/product/ten56-x-moersleutel-collab-box-presale/" target="_blank" rel="noopener" class="cta-button cta-button--dark">
-                                <span class="cta-button__text">SHOP HERE</span>
-                            </a>
-                        </div>
+                <div class="collaboration__content" style="display: flex; justify-content: flex-end; align-items: center; min-height: 500px;">
+                    <div class="collaboration__images" style="position: relative; display: flex; align-items: center; margin-right: 50px;">
+                        <!-- Base collaboration image -->
+                        <img src="images/a170658feda763152f2066c123f1a0b9.jpg" alt="Collaboration Background" style="width: 400px; height: auto; border-radius: 8px;">
+                        
+                        <!-- Product overlay image with clickable link -->
+                        <a href="https://moersleutel.com/product/ten56-x-moersleutel-collab-box-presale/" 
+                           target="_blank" 
+                           rel="noopener"
+                           onclick="TEN56Analytics.trackMerchandise('Collaboration Product Click', 'collaboration', 0);"
+                           style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3;">
+                            <img src="images/collaboration-product.png" 
+                                 alt="TEN56 x Moersleutel Collaboration Product" 
+                                 style="width: 200px; height: auto; transition: transform 0.3s ease; cursor: pointer;"
+                                 onmouseover="this.style.transform='scale(1.05)'"
+                                 onmouseout="this.style.transform='scale(1)'">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -423,8 +515,8 @@
                         <h3 class="footer__section-title">Store</h3>
                         <ul class="footer__list">
                             <li><a href="https://ten56apparel.com/" target="_blank" rel="noopener" class="footer__link">Apparel</a></li>
-                            <li><a href="https://www.outoflineshop.de/ten56/" target="_blank" rel="noopener" class="footer__link">EU Store</a></li>
-                            <li><a href="https://www.visionmerch.com/outoflinemusic/ten56/" target="_blank" rel="noopener" class="footer__link">US Store</a></li>
+                            <li><a href="https://www.outoflineshop.de/ten56/" target="_blank" rel="noopener" class="footer__link" onclick="TEN56Analytics.trackMerchandise('Footer EU Store', 'footer_link', 0);">EU Store</a></li>
+                            <li><a href="https://www.visionmerch.com/outoflinemusic/ten56/" target="_blank" rel="noopener" class="footer__link" onclick="TEN56Analytics.trackMerchandise('Footer US Store', 'footer_link', 0);">US Store</a></li>
                         </ul>
                     </div>
                     

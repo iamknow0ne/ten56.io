@@ -64,6 +64,11 @@ body {
   line-height: 1.6;
   color: var(--color-white);
   background-color: var(--color-dark-red);
+  background-image: url('../images/ioneon.png');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow-x: hidden;
 }
 
@@ -692,6 +697,65 @@ button {
 .instagram-feed {
   position: relative;
   margin-bottom: var(--spacing-3xl);
+  overflow: hidden;
+}
+
+.instagram-embeds {
+  display: flex;
+  gap: var(--spacing-lg);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: var(--spacing-md) 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray) transparent;
+}
+
+.instagram-embeds::-webkit-scrollbar {
+  height: 8px;
+}
+
+.instagram-embeds::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.instagram-embeds::-webkit-scrollbar-thumb {
+  background: var(--color-gray);
+  border-radius: 4px;
+}
+
+.instagram-embeds::-webkit-scrollbar-thumb:hover {
+  background: var(--color-white);
+}
+
+.instagram-media {
+  flex: 0 0 350px !important;
+  scroll-snap-align: start;
+  max-width: 350px !important;
+  min-width: 300px !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .instagram-media {
+    flex: 0 0 280px !important;
+    max-width: 280px !important;
+    min-width: 250px !important;
+  }
+  
+  .collaboration__content {
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+  
+  .collaboration__images {
+    margin-right: 0 !important;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .collaboration__images img:first-child {
+    width: 300px !important;
+  }
 }
 
 .instagram-feed__carousel {
@@ -750,6 +814,11 @@ button {
 .collaboration {
   padding: var(--spacing-3xl) 0;
   background: var(--color-gray);
+  background-image: url('../images/a170658feda763152f2066c123f1a0b9.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
   color: var(--color-white);
   min-height: 600px; /* Ensure enough height for full image */
 }
