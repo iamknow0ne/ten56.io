@@ -265,6 +265,12 @@
     margin: 0 -1rem;
   }
   
+  /* Linktree embed responsive */
+  .linktree-embed {
+    height: 500px; /* Slightly shorter on mobile */
+    min-height: 500px;
+  }
+  
   .bandsintown-widget__iframe,
   .linktree-widget__iframe {
     height: 400px;
