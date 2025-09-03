@@ -113,8 +113,9 @@
   
   /* Collaboration */
   .collaboration__content {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
+    justify-content: center;
+    padding-right: var(--container-padding);
+    text-align: center;
   }
   
   /* Footer */
