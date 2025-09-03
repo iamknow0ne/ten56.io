@@ -226,10 +226,10 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-3xl);
-  align-items: center;
+  align-items: flex-start;
   max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 0 var(--container-padding);
+  padding: var(--spacing-xl) var(--container-padding) 0;
   position: relative;
   z-index: 1;
 }
@@ -246,8 +246,9 @@ button {
 }
 
 .hero__title {
+  font-family: Impact, 'Arial Black', sans-serif;
   font-size: clamp(3rem, 8vw, 8rem);
-  font-weight: var(--font-weight-black);
+  font-weight: 900;
   line-height: 0.9;
   text-transform: uppercase;
   letter-spacing: -0.02em;
@@ -333,7 +334,13 @@ button {
 .merchandise {
   padding: var(--spacing-3xl) 0;
   background: var(--color-cream);
+  background-image: url('../images/merchandise/texture-overlay.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: soft-light;
   color: var(--color-black);
+  position: relative;
 }
 
 .merchandise__container {
@@ -405,7 +412,13 @@ button {
 .apparel {
   padding: var(--spacing-3xl) 0;
   background: var(--color-cream);
+  background-image: url('../images/hero/pattern-overlay.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
   color: var(--color-black);
+  position: relative;
 }
 
 .apparel__container {
@@ -645,6 +658,11 @@ button {
 .socials {
   padding: var(--spacing-3xl) 0;
   background: var(--color-dark-red);
+  background-image: url('../images/hero/accent-graphic.png');
+  background-size: contain;
+  background-position: right center;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
 .socials__container {
