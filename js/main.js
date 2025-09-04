@@ -224,125 +224,55 @@
     }
 
     // ==========================================================================
-    // Instagram Carousel
+    // Instagram Auto-Sliding Carousel
     // ==========================================================================
     
     class InstagramCarousel {
         constructor() {
-            this.carousel = document.getElementById('instagram-carousel');
-            this.prevBtn = document.getElementById('carousel-prev');
-            this.nextBtn = document.getElementById('carousel-next');
-            this.currentIndex = 0;
-            this.itemWidth = 320; // 300px + 20px gap
+            this.track = document.getElementById('instagram-track');
+            this.posts = [];
             
             this.init();
         }
 
         init() {
-            if (!this.carousel) return;
+            if (!this.track) return;
             
-            this.bindEvents();
-            this.loadInstagramPosts();
-        }
-
-        bindEvents() {
-            if (this.prevBtn) {
-                this.prevBtn.addEventListener('click', () => this.prevSlide());
-            }
+            this.posts = this.track.querySelectorAll('.instagram-post');
+            if (this.posts.length === 0) return;
             
-            if (this.nextBtn) {
-                this.nextBtn.addEventListener('click', () => this.nextSlide());
-            }
+            // Clone posts for infinite scroll effect
+            this.clonePosts();
+            this.setupAutoSlide();
+        }
 
-            // Touch events for mobile swiping
-            let startX = 0;
-            let startY = 0;
-            let isDragging = false;
-
-            this.carousel.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;
-                isDragging = true;
-            });
-
-            this.carousel.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-            });
-
-            this.carousel.addEventListener('touchend', (e) => {
-                if (!isDragging) return;
-                
-                const endX = e.changedTouches[0].clientX;
-                const endY = e.changedTouches[0].clientY;
-                const diffX = startX - endX;
-                const diffY = startY - endY;
-
-                // Only trigger if horizontal swipe is dominant
-                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-                    if (diffX > 0) {
-                        this.nextSlide();
-                    } else {
-                        this.prevSlide();
-                    }
-                }
-                
-                isDragging = false;
+        clonePosts() {
+            // Clone all posts and append them for seamless infinite scroll
+            const originalPosts = Array.from(this.posts);
+            originalPosts.forEach(post => {
+                const clone = post.cloneNode(true);
+                this.track.appendChild(clone);
             });
         }
 
-        async loadInstagramPosts() {
-            // This would typically connect to Instagram Basic Display API
-            // For now, we'll use placeholder functionality
-            const placeholderPosts = [
-                { id: 1, image: 'https://picsum.photos/300/300?random=1', caption: 'TEN56. Studio Session' },
-                { id: 2, image: 'https://picsum.photos/300/300?random=2', caption: 'New Merchandise Drop' },
-                { id: 3, image: 'https://picsum.photos/300/300?random=3', caption: 'Live Performance' },
-                { id: 4, image: 'https://picsum.photos/300/300?random=4', caption: 'Behind the Scenes' },
-                { id: 5, image: 'https://picsum.photos/300/300?random=5', caption: 'Tour Announcement' }
-            ];
-
-            this.renderPosts(placeholderPosts);
-        }
-
-        renderPosts(posts) {
-            if (!posts.length) return;
-
-            this.carousel.innerHTML = posts.map(post => `
-                <div class="instagram-post">
-                    <img src="${post.image}" alt="${post.caption}" class="instagram-post__image" loading="lazy">
-                    <div class="instagram-post__overlay">
-                        <a href="https://instagram.com/ten56hq" target="_blank" rel="noopener" class="instagram-post__link">
-                            <span class="instagram-post__icon">📷</span>
-                        </a>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        nextSlide() {
-            const maxIndex = this.carousel.children.length - this.getVisibleItems();
-            if (this.currentIndex < maxIndex) {
-                this.currentIndex++;
-                this.updateCarousel();
-            }
-        }
-
-        prevSlide() {
-            if (this.currentIndex > 0) {
-                this.currentIndex--;
-                this.updateCarousel();
-            }
-        }
-
-        updateCarousel() {
-            const translateX = -this.currentIndex * this.itemWidth;
-            this.carousel.style.transform = `translateX(${translateX}px)`;
-        }
-
-        getVisibleItems() {
-            const containerWidth = this.carousel.parentElement.offsetWidth;
-            return Math.floor(containerWidth / this.itemWidth);
+        setupAutoSlide() {
+            // Configure animation based on number of posts
+            const totalPosts = this.posts.length;
+            const postWidth = 200 + 24; // post width + gap in pixels
+            const totalWidth = totalPosts * postWidth;
+            
+            // Set animation duration (4 seconds per post)
+            const animationDuration = totalPosts * 4;
+            this.track.style.animationDuration = `${animationDuration}s`;
+            
+            // Pause animation on hover for better UX
+            this.track.addEventListener('mouseenter', () => {
+                this.track.style.animationPlayState = 'paused';
+            });
+            
+            this.track.addEventListener('mouseleave', () => {
+                this.track.style.animationPlayState = 'running';
+            });
         }
     }
 
@@ -370,7 +300,7 @@
                 this.components.scrollAnimations = new ScrollAnimations();
                 this.components.instagramCarousel = new InstagramCarousel();
                 
-                console.log('TEN56.IO website initialized successfully');
+                // TEN56.IO website initialized successfully
             } catch (error) {
                 console.error('Error initializing website components:', error);
             }

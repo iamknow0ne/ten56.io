@@ -700,40 +700,27 @@ button {
   overflow: hidden;
 }
 
-.instagram-embeds {
+.instagram-carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.instagram-carousel-track {
   display: flex;
-  gap: var(--spacing-lg);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: var(--spacing-md) 0;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-gray) transparent;
+  transition: transform 0.8s ease-in-out;
+  gap: var(--spacing-md);
+  animation: slideInsta 20s infinite linear;
 }
 
-.instagram-embeds::-webkit-scrollbar {
-  height: 8px;
+@keyframes slideInsta {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
-.instagram-embeds::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-.instagram-embeds::-webkit-scrollbar-thumb {
-  background: var(--color-gray);
-  border-radius: 4px;
-}
-
-.instagram-embeds::-webkit-scrollbar-thumb:hover {
-  background: var(--color-white);
-}
-
-.instagram-media {
-  flex: 0 0 350px !important;
-  scroll-snap-align: start;
-  max-width: 350px !important;
-  min-width: 300px !important;
-  margin: 0 !important;
+.instagram-carousel-track:hover {
+  animation-play-state: paused;
 }
 
 @media (max-width: 768px) {
@@ -768,11 +755,41 @@ button {
 
 .instagram-post {
   position: relative;
-  flex: 0 0 300px;
-  aspect-ratio: 1;
-  scroll-snap-align: start;
+  flex: 0 0 200px;
+  height: 200px;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform var(--transition-normal);
+}
+
+.instagram-post:hover {
+  transform: scale(1.05);
+}
+
+.instagram-post__placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #405de6, #5b51d8, #833ab4, #c13584, #e1306c, #fd1d1d);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.instagram-post__placeholder .instagram-post__icon {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.instagram-post__placeholder .instagram-post__id {
+  font-size: 0.7rem;
+  font-weight: var(--font-weight-bold);
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .instagram-post__image {
