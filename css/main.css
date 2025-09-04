@@ -773,12 +773,13 @@ button {
   
   .collaboration__image {
     content: url('../images/collab-background-mobile.jpg') !important;
-    object-fit: cover !important;
+    object-fit: contain !important;
     object-position: center center !important;
     width: 100% !important;
     height: 100vh !important;
     display: block !important;
     margin: 0 auto !important;
+    max-width: 100% !important;
   }
   
   .collaboration__cta {
