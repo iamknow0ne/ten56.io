@@ -757,15 +757,24 @@ button {
   position: relative;
   flex: 0 0 200px;
   width: 200px;
-  height: 200px;
+  height: auto;
   border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  overflow: visible;
   transition: transform var(--transition-normal);
 }
 
 .instagram-post:hover {
   transform: scale(1.05);
+}
+
+.instagram-post .instagram-media {
+  width: 200px !important;
+  max-width: 200px !important;
+  min-width: 200px !important;
+  margin: 0 !important;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .instagram-post__placeholder {
