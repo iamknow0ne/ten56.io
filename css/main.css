@@ -783,11 +783,11 @@ button {
   }
   
   .collaboration__cta {
-    left: auto !important;
-    right: var(--spacing-xl) !important;
-    transform: none !important;
-    bottom: 50% !important;
-    transform: translateY(50%) !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    bottom: var(--spacing-xl) !important;
+    top: auto !important;
   }
   
   .music-video__container {
