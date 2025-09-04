@@ -709,14 +709,14 @@ button {
 
 .instagram-carousel-track {
   display: flex;
-  transition: transform 0.8s ease-in-out;
   gap: var(--spacing-md);
   animation: slideInsta 20s infinite linear;
+  width: fit-content;
 }
 
 @keyframes slideInsta {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  100% { transform: translateX(-50%); }
 }
 
 .instagram-carousel-track:hover {
@@ -756,6 +756,7 @@ button {
 .instagram-post {
   position: relative;
   flex: 0 0 200px;
+  width: 200px;
   height: 200px;
   border-radius: 8px;
   overflow: hidden;

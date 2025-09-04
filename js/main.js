@@ -247,22 +247,26 @@
         }
 
         clonePosts() {
+            // Store original posts count before cloning
+            const originalPostsCount = this.posts.length;
+            
             // Clone all posts and append them for seamless infinite scroll
             const originalPosts = Array.from(this.posts);
             originalPosts.forEach(post => {
                 const clone = post.cloneNode(true);
                 this.track.appendChild(clone);
             });
+            
+            // Store original count for animation calculations
+            this.originalPostsCount = originalPostsCount;
         }
 
         setupAutoSlide() {
-            // Configure animation based on number of posts
-            const totalPosts = this.posts.length;
-            const postWidth = 200 + 24; // post width + gap in pixels
-            const totalWidth = totalPosts * postWidth;
+            // Use stored original posts count for calculations
+            const totalOriginalPosts = this.originalPostsCount || 5;
             
-            // Set animation duration (4 seconds per post)
-            const animationDuration = totalPosts * 4;
+            // Set animation duration (4 seconds per original post for smooth flow)
+            const animationDuration = totalOriginalPosts * 4;
             this.track.style.animationDuration = `${animationDuration}s`;
             
             // Pause animation on hover for better UX
