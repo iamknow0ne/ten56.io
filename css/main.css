@@ -367,6 +367,7 @@ button {
   padding: 0 var(--container-padding);
   position: relative;
   z-index: 2;
+  text-align: center;
 }
 
 /* ==========================================================================
@@ -765,6 +766,10 @@ button {
   
   .collaboration__images img:first-child {
     width: 300px !important;
+  }
+  
+  .collaboration__image {
+    content: url('../images/collab-background-mobile.jpg') !important;
   }
 }
 
