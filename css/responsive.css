@@ -191,6 +191,7 @@
   /* Instagram carousel */
   .instagram-post {
     flex: 0 0 250px;
+    width: 250px;
   }
   
   /* Carousel controls */
@@ -322,6 +323,7 @@
   /* Instagram feed */
   .instagram-post {
     flex: 0 0 200px;
+    width: 200px;
   }
   
   .carousel-btn {
@@ -364,6 +366,7 @@
   
   .instagram-post {
     flex: 0 0 180px;
+    width: 180px;
   }
   
   .store-card__img {

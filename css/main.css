@@ -327,9 +327,9 @@ button {
 .linktree-embed {
   position: relative;
   width: 100%;
-  max-width: 500px; /* Make it wider */
-  height: 900px; /* 1.5x taller (600 * 1.5) */
-  min-height: 900px;
+  max-width: 1000px; /* Much wider to overcome any constraints */
+  height: 600px; /* Original height */
+  min-height: 600px;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   overflow: hidden;
@@ -361,18 +361,6 @@ button {
   background-repeat: no-repeat;
   position: relative;
 }
-
-.music-video::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(44, 12, 10, 0.7);
-  z-index: 1;
-}
-
 .music-video__container {
   max-width: var(--container-max-width);
   margin: 0 auto;
@@ -387,13 +375,13 @@ button {
 
 .merchandise {
   padding: var(--spacing-3xl) 0;
-  background: var(--color-cream);
-  background-image: url('../images/f969e9634486cf99489bd13c04036122.png');
+  background: var(--color-black);
+  background-image: url('../images/ioneon.png');
+  background-attachment: fixed;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-blend-mode: soft-light;
-  color: var(--color-black);
+  color: var(--color-white);
   position: relative;
 }
 
@@ -439,7 +427,7 @@ button {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: var(--spacing-sm);
-  color: var(--color-gray);
+  color: var(--color-white);
 }
 
 .store-card__link {
@@ -494,12 +482,6 @@ button {
   color: var(--color-gray);
   margin-bottom: var(--spacing-sm);
 }
-
-.apparel__subtitle {
-  font-size: 1.2rem;
-  color: var(--color-gray);
-}
-
 .apparel__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -511,6 +493,11 @@ button {
   position: relative;
   text-align: center;
   transition: transform var(--transition-normal);
+  background: rgba(128, 128, 128, 0.3);
+  border-radius: 12px;
+  padding: var(--spacing-md);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
 }
 
 .product-card:hover {
@@ -552,11 +539,24 @@ button {
 
 .product-card__link {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--color-dark-red);
+  color: var(--color-white);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: 4px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  opacity: 0;
+  transition: all var(--transition-normal);
+  z-index: 2;
+}
+
+.product-card:hover .product-card__link {
+  opacity: 1;
 }
 
 .apparel__cta {
@@ -668,39 +668,13 @@ button {
   margin-bottom: var(--spacing-md);
 }
 
-.tours__subtitle {
-  font-size: 1.5rem;
-  margin-bottom: var(--spacing-xl);
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing-lg);
-}
-
-.social-links__item {
-  transition: transform var(--transition-fast);
-}
-
-.social-links__item:hover {
-  transform: scale(1.1);
-}
-
-.social-links__icon {
-  width: 50px;
-  height: 50px;
-}
-
-.tours__widget,
-.tours__linktree {
+.tours__widget {
   margin: var(--spacing-3xl) 0;
 }
 
-.bandsintown-widget__iframe,
-.linktree-widget__iframe {
+.bandsintown-widget__iframe {
   width: 100%;
-  height: 600px;
+  height: 1200px;
   border: none;
   border-radius: 8px;
 }

@@ -223,62 +223,6 @@
         }
     }
 
-    // ==========================================================================
-    // Instagram Auto-Sliding Carousel
-    // ==========================================================================
-    
-    class InstagramCarousel {
-        constructor() {
-            this.track = document.getElementById('instagram-track');
-            this.posts = [];
-            
-            this.init();
-        }
-
-        init() {
-            if (!this.track) return;
-            
-            this.posts = this.track.querySelectorAll('.instagram-post');
-            if (this.posts.length === 0) return;
-            
-            // Clone posts for infinite scroll effect
-            this.clonePosts();
-            this.setupAutoSlide();
-        }
-
-        clonePosts() {
-            // Store original posts count before cloning
-            const originalPostsCount = this.posts.length;
-            
-            // Clone all posts and append them for seamless infinite scroll
-            const originalPosts = Array.from(this.posts);
-            originalPosts.forEach(post => {
-                const clone = post.cloneNode(true);
-                this.track.appendChild(clone);
-            });
-            
-            // Store original count for animation calculations
-            this.originalPostsCount = originalPostsCount;
-        }
-
-        setupAutoSlide() {
-            // Use stored original posts count for calculations
-            const totalOriginalPosts = this.originalPostsCount || 5;
-            
-            // Set animation duration (4 seconds per original post for smooth flow)
-            const animationDuration = totalOriginalPosts * 4;
-            this.track.style.animationDuration = `${animationDuration}s`;
-            
-            // Pause animation on hover for better UX
-            this.track.addEventListener('mouseenter', () => {
-                this.track.style.animationPlayState = 'paused';
-            });
-            
-            this.track.addEventListener('mouseleave', () => {
-                this.track.style.animationPlayState = 'running';
-            });
-        }
-    }
 
     // ==========================================================================
     // App Initialization
@@ -302,7 +246,6 @@
             try {
                 this.components.navigation = new Navigation();
                 this.components.scrollAnimations = new ScrollAnimations();
-                this.components.instagramCarousel = new InstagramCarousel();
                 
                 // TEN56.IO website initialized successfully
             } catch (error) {
@@ -319,7 +262,6 @@
         App,
         Navigation,
         ScrollAnimations,
-        InstagramCarousel,
         utils: {
             debounce,
             throttle,

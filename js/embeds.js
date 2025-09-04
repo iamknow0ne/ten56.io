@@ -75,7 +75,7 @@
         }
 
         onPlayerReady(event, playerId) {
-            console.log(`YouTube player ${playerId} ready`);
+            // YouTube player ready
             
             // Auto-play hero video if it's muted
             const player = event.target;
@@ -338,21 +338,16 @@
         }
 
         renderPosts(posts) {
-            const carousel = document.getElementById('instagram-carousel');
-            if (!carousel) return;
+            // Note: Instagram carousel is now handled by main.js InstagramCarousel class
+            // This method is kept for potential future API integration
+            const track = document.getElementById('instagram-track');
+            if (!track) return;
 
-            carousel.innerHTML = posts.map(post => `
-                <div class="instagram-post" data-post-id="${post.id}">
-                    <img src="${post.media_url}" alt="${this.truncateCaption(post.caption)}" class="instagram-post__image" loading="lazy">
-                    <div class="instagram-post__overlay">
-                        <a href="${post.permalink}" target="_blank" rel="noopener" class="instagram-post__link" aria-label="View on Instagram">
-                            <span class="instagram-post__icon">📷</span>
-                        </a>
-                    </div>
-                </div>
-            `).join('');
-
-            // Add intersection observer for lazy loading
+            // For now, we don't replace the existing placeholder posts
+            // to avoid conflicts with the CSS animation carousel
+            console.log('Instagram posts loaded:', posts.length);
+            
+            // Add intersection observer for lazy loading of existing posts
             this.setupLazyLoading();
         }
 
@@ -383,7 +378,7 @@
         async refreshFeed() {
             try {
                 // This would make an actual API call
-                console.log('Refreshing Instagram feed...');
+                // Refreshing Instagram feed
                 // const response = await fetch('/api/instagram/posts');
                 // const posts = await response.json();
                 // this.renderPosts(posts);
@@ -413,7 +408,7 @@
             // Setup global error handling
             this.setupGlobalErrorHandling();
             
-            console.log('Embed managers initialized');
+            // Embed managers initialized
         }
 
         setupGlobalErrorHandling() {
