@@ -757,6 +757,9 @@ button {
   .collaboration__content {
     flex-direction: column !important;
     text-align: center !important;
+    align-items: center !important;
+    justify-content: center !important;
+    display: flex !important;
   }
   
   .collaboration__images {
@@ -771,7 +774,11 @@ button {
   .collaboration__image {
     content: url('../images/collab-background-mobile.jpg') !important;
     object-fit: cover !important;
-    object-position: center !important;
+    object-position: center center !important;
+    width: 100% !important;
+    height: 100vh !important;
+    display: block !important;
+    margin: 0 auto !important;
   }
   
   .collaboration__cta {
@@ -780,6 +787,19 @@ button {
     transform: none !important;
     bottom: 50% !important;
     transform: translateY(50%) !important;
+  }
+  
+  .music-video__container {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .video-embed--large {
+    margin: 0 auto !important;
+    display: block !important;
   }
 }
 
