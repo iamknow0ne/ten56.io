@@ -776,21 +776,28 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: white !important;
   text-align: center;
+  font-family: var(--font-primary);
+  position: relative;
+  z-index: 1;
 }
 
 .instagram-post__placeholder .instagram-post__icon {
   font-size: 2rem;
   margin-bottom: var(--spacing-xs);
+  color: white;
+  display: block;
 }
 
 .instagram-post__placeholder .instagram-post__id {
   font-size: 0.7rem;
   font-weight: var(--font-weight-bold);
-  opacity: 0.8;
+  opacity: 1;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  color: white;
+  display: block;
 }
 
 .instagram-post__image {
