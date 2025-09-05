@@ -28,62 +28,255 @@
         // Additional Google Analytics Property
         gtag('config', 'G-SY8LPT4PFE');
 
-        // Band-specific tracking functions
+        // COMPREHENSIVE TEN56 ANALYTICS SYSTEM - Granular Tracking
         window.TEN56Analytics = {
-            // Track merchandise clicks
-            trackMerchandise: function(itemName, category, value) {
-                gtag('event', 'merchandise_click', {
-                    'event_category': 'Commerce',
-                    'event_label': itemName,
-                    'custom_parameter_2': category,
-                    'custom_parameter_3': 'high_interest',
-                    'value': value || 0
+            // ==== NAVIGATION TRACKING ====
+            trackNavigation: function(linkText, destination, location) {
+                gtag('event', 'navigation_click', {
+                    'event_category': 'Navigation',
+                    'event_label': `${linkText}_${location}`,
+                    'link_text': linkText,
+                    'destination': destination,
+                    'nav_location': location,
+                    'custom_parameter_2': 'navigation_interaction'
                 });
             },
-            
-            // Track music engagement
-            trackMusicEngagement: function(action, song, duration) {
+
+            // ==== SOCIAL MEDIA TRACKING - GRANULAR ====
+            trackSocialClick: function(platform, location, action) {
+                gtag('event', 'social_media_click', {
+                    'event_category': 'Social_Media',
+                    'event_label': `${platform}_${location}_${action}`,
+                    'social_platform': platform,
+                    'click_location': location,
+                    'action_type': action || 'click',
+                    'custom_parameter_2': 'social_engagement'
+                });
+            },
+
+            // ==== MERCHANDISE & COMMERCE TRACKING ====
+            trackMerchandise: function(itemName, category, value, location, action) {
+                gtag('event', 'merchandise_interaction', {
+                    'event_category': 'Commerce',
+                    'event_label': `${itemName}_${location}_${action}`,
+                    'item_name': itemName,
+                    'item_category': category,
+                    'click_location': location,
+                    'action_type': action || 'click',
+                    'value': value || 0,
+                    'custom_parameter_3': 'commerce_interest'
+                });
+            },
+
+            trackProductView: function(productName, productCategory, location) {
+                gtag('event', 'product_view', {
+                    'event_category': 'Product',
+                    'event_label': `${productName}_${location}`,
+                    'product_name': productName,
+                    'product_category': productCategory,
+                    'view_location': location,
+                    'custom_parameter_2': 'product_interest'
+                });
+            },
+
+            trackStoreRedirect: function(storeName, storeType, location) {
+                gtag('event', 'store_redirect', {
+                    'event_category': 'Commerce',
+                    'event_label': `${storeName}_${storeType}_${location}`,
+                    'store_name': storeName,
+                    'store_type': storeType,
+                    'redirect_location': location,
+                    'custom_parameter_3': 'store_interest'
+                });
+            },
+
+            // ==== CONTENT ENGAGEMENT TRACKING ====
+            trackContentEngagement: function(contentType, contentName, action, duration) {
+                gtag('event', 'content_engagement', {
+                    'event_category': 'Content',
+                    'event_label': `${contentType}_${contentName}_${action}`,
+                    'content_type': contentType,
+                    'content_name': contentName,
+                    'engagement_action': action,
+                    'engagement_duration': duration || 0,
+                    'engagement_level': this.calculateEngagementLevel(duration || 0),
+                    'custom_parameter_1': 'content_interaction'
+                });
+            },
+
+            // ==== MUSIC & VIDEO TRACKING ====
+            trackVideoInteraction: function(videoTitle, action, timestamp) {
+                gtag('event', 'video_interaction', {
+                    'event_category': 'Video',
+                    'event_label': `${videoTitle}_${action}`,
+                    'video_title': videoTitle,
+                    'video_action': action,
+                    'video_timestamp': timestamp || 0,
+                    'custom_parameter_2': 'video_engagement'
+                });
+            },
+
+            trackMusicEngagement: function(action, song, duration, platform) {
                 gtag('event', 'music_engagement', {
                     'event_category': 'Music',
-                    'event_label': song,
-                    'custom_parameter_1': this.calculateEngagementLevel(duration),
-                    'custom_parameter_2': 'music',
-                    'engagement_time_msec': duration * 1000
+                    'event_label': `${song}_${action}_${platform}`,
+                    'song_title': song,
+                    'music_action': action,
+                    'music_platform': platform || 'website',
+                    'engagement_duration': duration || 0,
+                    'engagement_level': this.calculateEngagementLevel(duration || 0),
+                    'custom_parameter_1': 'music_interaction'
                 });
             },
-            
-            // Track social media clicks
-            trackSocialClick: function(platform, post_id) {
-                gtag('event', 'social_click', {
-                    'event_category': 'Social',
-                    'event_label': platform,
-                    'custom_parameter_2': 'social_content'
+
+            // ==== WIDGET & EMBED TRACKING ====
+            trackWidgetInteraction: function(widgetName, action, details) {
+                gtag('event', 'widget_interaction', {
+                    'event_category': 'Widget',
+                    'event_label': `${widgetName}_${action}`,
+                    'widget_name': widgetName,
+                    'widget_action': action,
+                    'interaction_details': details || '',
+                    'custom_parameter_2': 'widget_engagement'
                 });
             },
-            
-            // Track tour interest
-            trackTourInterest: function(city, action) {
-                gtag('event', 'tour_interest', {
+
+            trackLinktreeClick: function(linkDestination) {
+                gtag('event', 'linktree_click', {
+                    'event_category': 'Linktree',
+                    'event_label': `linktree_${linkDestination}`,
+                    'link_destination': linkDestination,
+                    'custom_parameter_2': 'linktree_engagement'
+                });
+            },
+
+            trackBandsintown: function(action, eventDetails) {
+                gtag('event', 'bandsintown_interaction', {
                     'event_category': 'Tours',
-                    'event_label': city,
-                    'custom_parameter_1': 'potential_fan',
-                    'custom_parameter_2': 'tour_content'
+                    'event_label': `bandsintown_${action}`,
+                    'bandsintown_action': action,
+                    'event_details': eventDetails || '',
+                    'custom_parameter_2': 'tour_interest'
                 });
             },
-            
-            // Calculate engagement level
+
+            // ==== USER BEHAVIOR TRACKING ====
+            trackScrollDepth: function(percentage, section) {
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'User_Behavior',
+                    'event_label': `scroll_${percentage}_${section}`,
+                    'scroll_percentage': percentage,
+                    'page_section': section,
+                    'custom_parameter_1': 'user_engagement'
+                });
+            },
+
+            trackTimeOnSection: function(sectionName, timeSpent) {
+                gtag('event', 'section_time', {
+                    'event_category': 'User_Behavior',
+                    'event_label': `time_${sectionName}_${timeSpent}s`,
+                    'section_name': sectionName,
+                    'time_spent_seconds': timeSpent,
+                    'engagement_level': this.calculateEngagementLevel(timeSpent),
+                    'custom_parameter_1': 'section_engagement'
+                });
+            },
+
+            trackPageInteraction: function(interactionType, elementId, details) {
+                gtag('event', 'page_interaction', {
+                    'event_category': 'User_Behavior',
+                    'event_label': `${interactionType}_${elementId}`,
+                    'interaction_type': interactionType,
+                    'element_id': elementId,
+                    'interaction_details': details || '',
+                    'custom_parameter_1': 'page_engagement'
+                });
+            },
+
+            // ==== MOBILE & DEVICE SPECIFIC ====
+            trackMobileInteraction: function(action, element, touchType) {
+                gtag('event', 'mobile_interaction', {
+                    'event_category': 'Mobile',
+                    'event_label': `mobile_${action}_${element}`,
+                    'mobile_action': action,
+                    'touched_element': element,
+                    'touch_type': touchType || 'tap',
+                    'custom_parameter_2': 'mobile_usage'
+                });
+            },
+
+            // ==== GEOGRAPHIC & FAN DATA ====
+            trackFanLocation: function(action, preference) {
+                gtag('event', 'fan_location_interest', {
+                    'event_category': 'Geography',
+                    'event_label': `location_${action}_${preference}`,
+                    'location_action': action,
+                    'geographic_preference': preference || '',
+                    'custom_parameter_1': 'geographic_data'
+                });
+            },
+
+            // ==== COLLABORATION & SPECIAL EVENTS ====
+            trackCollaboration: function(collaborationType, action, partner) {
+                gtag('event', 'collaboration_interaction', {
+                    'event_category': 'Collaboration',
+                    'event_label': `${collaborationType}_${action}_${partner}`,
+                    'collaboration_type': collaborationType,
+                    'collab_action': action,
+                    'collaboration_partner': partner,
+                    'custom_parameter_3': 'collaboration_interest'
+                });
+            },
+
+            // ==== FOOTER & LEGAL TRACKING ====
+            trackFooterInteraction: function(linkType, destination) {
+                gtag('event', 'footer_interaction', {
+                    'event_category': 'Footer',
+                    'event_label': `footer_${linkType}_${destination}`,
+                    'footer_link_type': linkType,
+                    'link_destination': destination,
+                    'custom_parameter_2': 'footer_engagement'
+                });
+            },
+
+            trackLegalPageView: function(pageName) {
+                gtag('event', 'legal_page_view', {
+                    'event_category': 'Legal',
+                    'event_label': `legal_${pageName}`,
+                    'legal_page': pageName,
+                    'custom_parameter_2': 'legal_compliance'
+                });
+            },
+
+            // ==== UTILITY FUNCTIONS ====
             calculateEngagementLevel: function(duration) {
+                if (duration > 300) return 'very_high_engagement';
                 if (duration > 120) return 'high_engagement';
                 if (duration > 60) return 'medium_engagement';
-                return 'low_engagement';
+                if (duration > 15) return 'low_engagement';
+                return 'minimal_engagement';
             },
-            
-            // Track geographic fan data
-            trackFanLocation: function(action) {
-                gtag('event', 'fan_location', {
-                    'event_category': 'Geography',
-                    'event_label': action,
-                    'custom_parameter_1': 'geographic_data'
+
+            // ==== ERROR & PERFORMANCE TRACKING ====
+            trackError: function(errorType, errorMessage, location) {
+                gtag('event', 'website_error', {
+                    'event_category': 'Error',
+                    'event_label': `${errorType}_${location}`,
+                    'error_type': errorType,
+                    'error_message': errorMessage,
+                    'error_location': location,
+                    'custom_parameter_1': 'error_tracking'
+                });
+            },
+
+            trackPerformance: function(metric, value, page) {
+                gtag('event', 'performance_metric', {
+                    'event_category': 'Performance',
+                    'event_label': `${metric}_${page}`,
+                    'performance_metric': metric,
+                    'metric_value': value,
+                    'page_location': page,
+                    'custom_parameter_1': 'performance_data'
                 });
             }
         };
@@ -128,19 +321,19 @@
             </div>
             <ul class="nav__menu" id="nav-menu">
                 <li class="nav__item">
-                    <a href="#hero" class="nav__link">Home</a>
+                    <a href="#hero" class="nav__link" onclick="TEN56Analytics.trackNavigation('Home', '#hero', 'main_nav');">Home</a>
                 </li>
                 <li class="nav__item">
-                    <a href="#music" class="nav__link">Music</a>
+                    <a href="#music" class="nav__link" onclick="TEN56Analytics.trackNavigation('Music', '#music', 'main_nav');">Music</a>
                 </li>
                 <li class="nav__item">
-                    <a href="#merchandise" class="nav__link">Merch</a>
+                    <a href="#merchandise" class="nav__link" onclick="TEN56Analytics.trackNavigation('Merch', '#merchandise', 'main_nav');">Merch</a>
                 </li>
                 <li class="nav__item">
-                    <a href="#apparel" class="nav__link">Apparel</a>
+                    <a href="#apparel" class="nav__link" onclick="TEN56Analytics.trackNavigation('Apparel', '#apparel', 'main_nav');">Apparel</a>
                 </li>
                 <li class="nav__item">
-                    <a href="#tours" class="nav__link">Tours</a>
+                    <a href="#tours" class="nav__link" onclick="TEN56Analytics.trackNavigation('Tours', '#tours', 'main_nav');">Tours</a>
                 </li>
             </ul>
             <div class="nav__toggle" id="nav-toggle">
@@ -171,7 +364,7 @@
                     
                     <!-- Discrete Social Media Icons -->
                     <div class="hero__socials">
-                        <a href="https://instagram.com/ten56hq" target="_blank" rel="noopener" class="social-icon" onclick="TEN56Analytics.trackSocialClick('instagram', 'hero');">
+                        <a href="https://instagram.com/ten56hq" target="_blank" rel="noopener" class="social-icon" onclick="TEN56Analytics.trackSocialClick('instagram', 'hero', 'external_link');">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                             </svg>
@@ -248,7 +441,7 @@
                                     <img src="images/merchandise/eu-store.jpg" alt="EU Store" class="store-card__img">
                                 </div>
                                 <h3 class="store-card__title">EU STORE</h3>
-                                <a href="https://www.outoflineshop.de/ten56/" target="_blank" rel="noopener" class="store-card__link" onclick="TEN56Analytics.trackMerchandise('EU Store Click', 'store_redirect', 0); TEN56Analytics.trackFanLocation('eu_store_interest');">Shop Now</a>
+                                <a href="https://www.outoflineshop.de/ten56/" target="_blank" rel="noopener" class="store-card__link" onclick="TEN56Analytics.trackStoreRedirect('EU Store', 'merchandise', 'store_grid'); TEN56Analytics.trackFanLocation('eu_store_visit', 'europe');">Shop Now</a>
                             </div>
                             
                             <div class="store-card">
@@ -256,7 +449,7 @@
                                     <img src="images/merchandise/us-store.jpg" alt="US Store" class="store-card__img">
                                 </div>
                                 <h3 class="store-card__title">US STORE</h3>
-                                <a href="https://www.visionmerch.com/outoflinemusic/ten56/" target="_blank" rel="noopener" class="store-card__link" onclick="TEN56Analytics.trackMerchandise('US Store Click', 'store_redirect', 0); TEN56Analytics.trackFanLocation('us_store_interest');">Shop Now</a>
+                                <a href="https://www.visionmerch.com/outoflinemusic/ten56/" target="_blank" rel="noopener" class="store-card__link" onclick="TEN56Analytics.trackStoreRedirect('US Store', 'merchandise', 'store_grid'); TEN56Analytics.trackFanLocation('us_store_visit', 'america');">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -386,7 +579,7 @@
                         <a href="https://moersleutel.com/product/ten56-x-moersleutel-collab-box-presale/" 
                            target="_blank" 
                            rel="noopener"
-                           onclick="TEN56Analytics.trackMerchandise('Collaboration Shop Now', 'collaboration', 0);"
+                           onclick="TEN56Analytics.trackCollaboration('beer_collab', 'purchase_intent', 'moersleutel');"
                            class="cta-button cta-button--dark">
                             Shop Now
                         </a>
@@ -447,5 +640,6 @@
     <!-- Scripts -->
     <script src="js/main.js"></script>
     <script src="js/embeds.js"></script>
+    <script src="js/advanced-analytics.js"></script>
 </body>
 </html>
